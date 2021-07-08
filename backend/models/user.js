@@ -44,20 +44,10 @@ const userSchema = new mongoose.Schema({
 
 // Encrypting password before saving new user
 userSchema.pre('save', async function(next){
-<<<<<<< HEAD
-
-    if(!this.isModified('password')) {
-        next();
-    }
-
-    this.password = await bcrypt.hash(this.password, 10);
-
-=======
     if(!this.isModified('password')) {
         next();
     }
     this.password = await bcrypt.hash(this.password, 10);
->>>>>>> 1279e2068cdae1702e448ba1d500147036f6e2d0
 })
 
 module.exports = mongoose.model('User', userSchema);
