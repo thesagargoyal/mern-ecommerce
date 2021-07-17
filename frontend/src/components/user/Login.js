@@ -79,7 +79,7 @@ const Login = ({ history }) => {
                   LOGIN
                 </button>
 
-                <Link href="/register" className="float-right mt-3">
+                <Link to="/register" className="float-right mt-3">
                   New User?
                 </Link>
               </form>
