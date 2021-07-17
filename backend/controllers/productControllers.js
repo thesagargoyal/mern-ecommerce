@@ -22,10 +22,14 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   const apiFeatures = new APIFeatures(Product.find(), req.query)
     .search()
     .filter()
-    .pagination(resPerPage);
 
   let products = await apiFeatures.query;
-  res.status(200).json({ success: true, productsCount, resPerPage, products });
+  let filteredProductsCount = products.length;
+
+  apiFeatures.pagination(resPerPage);
+  products = await apiFeatures.query;
+
+  res.status(200).json({ success: true, productsCount, filteredProductsCount, resPerPage, products });
 });
 
 // Get single product details   =>   /api/v1/product/:id
