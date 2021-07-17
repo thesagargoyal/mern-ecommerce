@@ -25,7 +25,7 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     .pagination(resPerPage);
 
   let products = await apiFeatures.query;
-  res.status(200).json({ success: true, productsCount, products });
+  res.status(200).json({ success: true, productsCount, resPerPage, products });
 });
 
 // Get single product details   =>   /api/v1/product/:id
