@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import Login from "./components/user/Login";
 import Header from "./components/layouts/Header";
 import Footer from "./components/layouts/Footer";
 import Home from "./components/Home";
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" component={Home} exact />
           <Route path="/search/:keyword" component={Home} exact />
           <Route path="/product/:id" component={ProductDetails} exact />
+          <Route path="/login" component={Login} exact />
         </div>
         <Footer />
       </div>
