@@ -9,6 +9,7 @@ import ProductDetails from "./components/product/ProductDetails";
 import Profile from "./components/user/Profile";
 import { loadUser } from "./actions/userActions";
 import store from './store';
+import ProtectedRoute from "./components/route/ProtectedRoute";
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
           <Route path="/product/:id" component={ProductDetails} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/register" component={Register} exact />
-          <Route path="/me" component={Profile} exact />
+          <ProtectedRoute path="/me" component={Profile} exact />
         </div>
         <Footer />
       </div>
