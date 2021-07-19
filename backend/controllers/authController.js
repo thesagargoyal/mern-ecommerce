@@ -166,23 +166,42 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//Update user profile  /ap/v1/me/update
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
-    name: req.body.name,
-    email: req.body.email,
-  };
+      name: req.body.name,
+      email: req.body.email
+  }
+
+  // Update avatar
+  if (req.body.avatar !== '') {
+      const user = await User.findById(req.user.id)
+
+      const image_id = user.avatar.public_id;
+      const res = await cloudinary.v2.uploader.destroy(image_id);
+
+      const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+          folder: 'avatars',
+          width: 150,
+          crop: "scale"
+      })
+
+      newUserData.avatar = {
+          public_id: result.public_id,
+          url: result.secure_url
+      }
+  }
 
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
-    new: true,
-    runValidator: true,
-    useFindAndModify: false,
-  });
+      new: true,
+      runValidators: true,
+      useFindAndModify: false
+  })
+
   res.status(200).json({
-    success: true,
-    message: "Profile updated successfully",
-  });
-});
+      success: true
+  })
+})
+
 
 //Get all user
 exports.allUsers = catchAsyncErrors(async (req, res, next) => {
