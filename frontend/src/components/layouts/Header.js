@@ -9,6 +9,8 @@ import { logout } from '../../actions/userActions';
 
 const Header = () => {
 
+  const {cartItems} = useSelector((state) => state.cart);
+
   const alert = useAlert();
   const dispatch = useDispatch();
 
@@ -35,12 +37,12 @@ const Header = () => {
         </div>
 
         <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
-        <Link to='/card' style={{textDecoration:"none"}}>
+        <Link to='/cart' style={{textDecoration:"none"}}>
         <span id="cart" class="ml-3">
             Cart
           </span>
           <span class="ml-1" id="cart_count">
-            2
+            {cartItems ? cartItems.length : "0"}
           </span>
         </Link>
         {user ? 
