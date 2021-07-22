@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails, clearErrors } from "../../actions/productActions";
 import { addItemToCart, removeItemFromCart } from "../../actions/cartActions";
 
-const Cart = () => {
+const Cart = ({history}) => {
   const dispatch = useDispatch();
 
   const { cartItems } = useSelector((state) => state.cart);
@@ -32,6 +32,10 @@ const decreaseQty = (id, quantity) => {
 
   const removeCartItemHandler = (id) => {
     dispatch(removeItemFromCart(id));
+  }
+
+  const checkoutHandler = () => {
+    history.push("/login?redirect=shipping");
   }
 
   return (
@@ -107,7 +111,7 @@ const decreaseQty = (id, quantity) => {
                 </p>
 
                 <hr />
-                <button id="checkout_btn" class="btn btn-primary btn-block">
+                <button id="checkout_btn" class="btn btn-primary btn-block" onClick={checkoutHandler}>
                   Check out
                 </button>
               </div>

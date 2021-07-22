@@ -32,7 +32,7 @@ export const getProducts = (keyword='',currentPage=1, price, category, rating) =
 };
 
 // Clear errors
-export const clearErrors = (id) => async (dispatch) => {
+export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };
 

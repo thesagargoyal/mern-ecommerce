@@ -6,12 +6,14 @@ import Loader from "../layouts/Loader";
 import MetaData from "../layouts/MetaData";
 import { login, clearErrors } from "../../actions/userActions";
 
-const Login = ({ history }) => {
+const Login = ({ history, location }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const alert = useAlert();
   const dispatch = useDispatch();
+
+  const redirect = location.search ? location.search.split("=")[1] : "";
 
   const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
@@ -19,7 +21,7 @@ const Login = ({ history }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push(`/`);
+      history.push(redirect);
     }
 
     if (error) {
