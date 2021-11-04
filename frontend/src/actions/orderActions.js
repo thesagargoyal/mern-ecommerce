@@ -5,6 +5,9 @@ import {
   MY_ORDERS_REQUEST,
   MY_ORDERS_SUCCESS,
   MY_ORDERS_FAIL,
+  ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_SUCCESS,
+  ORDER_DETAILS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/orderConstants";
 import axios from "axios";
@@ -42,6 +45,19 @@ export const myOrders = () => async (dispatch)=>{
     } catch (error) {
         dispatch({type:MY_ORDERS_FAIL, payload: error.response.data.message})
     }
+}
+
+export const getOrderDetails = (id) => async (dispatch)=>{
+    
+  dispatch({type: ORDER_DETAILS_REQUEST})
+  
+  try {
+      const {data } = await axios.get(`/api/v1/orders/${id}`);
+      dispatch({ type:ORDER_DETAILS_SUCCESS, payload: data.orders})
+
+  } catch (error) {
+      dispatch({type:ORDER_DETAILS_FAIL, payload: error.response.data.message})
+  }
 }
 
 //Clear errors
