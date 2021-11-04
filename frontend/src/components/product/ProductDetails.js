@@ -9,6 +9,7 @@ import {
 } from "../../actions/productActions";
 import { useParams } from "react-router-dom";
 import Loader from "../layouts/Loader";
+import ListReviews from "../review/ListReviews";
 import MetaData from "../layouts/MetaData";
 import { addItemToCart } from "../../actions/cartActions";
 
@@ -301,6 +302,11 @@ const ProductDetails = ({ match }) => {
               </div>
             </div>
           </div>
+
+          {product && product.reviews && product.reviews.length > 0 && (
+            <ListReviews reviews={product.reviews} />
+          )}
+
         </>
       )}
     </>
