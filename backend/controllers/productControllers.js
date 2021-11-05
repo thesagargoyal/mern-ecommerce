@@ -162,3 +162,11 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     message: "Review deleted successfully",
   });
 });
+
+// get all products(Admin) /api/v1/admin/products
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+ 
+  products = await Product.find();
+
+  res.status(200).json({ success: true, products });
+});

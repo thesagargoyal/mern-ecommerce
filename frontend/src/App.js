@@ -24,7 +24,8 @@ import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe} from '@stripe/stripe-js'
 import ListOrders from './components/order/ListOrders';
 import OrderDetails from './components/order/OrderDetails';
-
+import DashBoard from './components/admin/Dashboard'
+import ProductsList from './components/admin/ProductsList'
 
 function App() {
 
@@ -69,6 +70,9 @@ function App() {
           <ProtectedRoute path="/orders/me" component={ListOrders} exact />          
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />          
         </div>
+        <ProtectedRoute path="/Dashboard" isAdmin={true} component={ DashBoard } exact />          
+        <ProtectedRoute path="/admin/products" isAdmin={true} component={ ProductsList } exact />          
+
         <Footer />   
       </div>
     </Router>
