@@ -21,7 +21,7 @@ const Dashboard = () => {
   products.forEach((product) =>{
     if(product.quantity===0){
       outOfStock+=1;
-    }
+    }   
   });
 
   useEffect(() => {

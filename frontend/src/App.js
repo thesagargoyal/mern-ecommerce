@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import {useEffect, useState } from 'react';
+import {  useSelector } from 'react-redux';
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Header from "./components/layouts/Header";
@@ -26,10 +27,13 @@ import ListOrders from './components/order/ListOrders';
 import OrderDetails from './components/order/OrderDetails';
 import DashBoard from './components/admin/Dashboard'
 import ProductsList from './components/admin/ProductsList'
+import NewProduct from './components/admin/NewProduct';
 
 function App() {
 
-   const [ stripeApiKey, setStripeApiKey ] = useState('');
+  const [ stripeApiKey, setStripeApiKey ] = useState('');
+  
+  const {loading, user} = useSelector(state => state.auth);
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -72,8 +76,12 @@ function App() {
         </div>
         <ProtectedRoute path="/Dashboard" isAdmin={true} component={ DashBoard } exact />          
         <ProtectedRoute path="/admin/products" isAdmin={true} component={ ProductsList } exact />          
-
-        <Footer />   
+        <ProtectedRoute path="/admin/product" isAdmin={true} component={ NewProduct } exact />          
+        {
+          !loading && user.role !=='admin' && (
+            <Footer />
+          )
+        }   
       </div>
     </Router>
   );
