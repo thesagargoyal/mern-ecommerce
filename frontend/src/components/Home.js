@@ -49,12 +49,14 @@ const Home = ({ match }) => {
     (state) => state.products
   );
 
+ 
 
 
   useEffect(() => {
     if (error) {
       return alert.error(error);
     }
+    console.log("entered")
     dispatch(getProducts(keyword, currentPage, price, category, rating));
   }, [dispatch, alert, error, keyword, currentPage, price, category, rating]);
 
