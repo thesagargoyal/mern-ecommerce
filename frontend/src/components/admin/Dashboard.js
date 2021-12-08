@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   let outOfStock=0;
 
-  products.forEach((product) =>{
+  products?.forEach((product) =>{
     if(product.quantity===0){
       outOfStock+=1;
     }   
