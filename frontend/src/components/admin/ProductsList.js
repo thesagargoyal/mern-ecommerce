@@ -70,7 +70,7 @@ const ProductsList = ({ history }) => {
         actions: (
           <>
             <Link
-              to={`/admin/products/${product._id}`}
+              to={`/admin/product/${product._id}`}
               className="btn btn-primary py-1 px-2"
             >
               <i className="fa fa-pencil"></i>
