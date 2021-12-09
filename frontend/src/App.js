@@ -29,6 +29,9 @@ import DashBoard from './components/admin/Dashboard'
 import ProductsList from './components/admin/ProductsList'
 import NewProduct from './components/admin/NewProduct';
 import UpdateProduct from './components/admin/UpdateProduct';
+// import OrdersList from './components/admin/OrdersList';
+import UsersList from './components/admin/UsersList';
+import UpdateUser from './components/admin/UpdateUser';
 
 function App() {
 
@@ -79,6 +82,9 @@ function App() {
         <ProtectedRoute path="/admin/products" isAdmin={true} component={ ProductsList } exact />          
         <ProtectedRoute path="/admin/product" isAdmin={true} component={ NewProduct } exact />          
         <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={ UpdateProduct } exact />
+        <ProtectedRoute path="/admin/users" isAdmin={true} component={UsersList} exact />
+        <ProtectedRoute path="/admin/user/:id" isAdmin={true} component={UpdateUser} exact />
+        {/* <ProtectedRoute path="/admin/orders" isAdmin={true} component={ OrdersList } exact /> */}
         {
           !loading && user?.role !=='admin' && (
             <Footer />

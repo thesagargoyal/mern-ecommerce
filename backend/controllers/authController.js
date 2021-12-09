@@ -201,15 +201,15 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 })
 
 
-//Get all user
+// Get all users   =>   /api/v1/admin/users
 exports.allUsers = catchAsyncErrors(async (req, res, next) => {
-  const users = await Users.find();
+  const users = await User.find();
 
   res.status(200).json({
-    success: true,
-    users,
-  });
-});
+      success: true,
+      users
+  })
+})
 
 // Get user Details /api/v1/admin/user/:id
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
@@ -250,6 +250,10 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   if (!user) {
     return next(new ErrorHandler("User not found"));
   }
+
+  // Remove avatar from cloudinary
+  const image_id = user.avatar.public_id;
+  await cloudinary.v2.uploader.destroy(image_id);
 
   await user.remove();
 
