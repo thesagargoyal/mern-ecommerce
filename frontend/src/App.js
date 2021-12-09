@@ -29,10 +29,11 @@ import DashBoard from './components/admin/Dashboard'
 import ProductsList from './components/admin/ProductsList'
 import NewProduct from './components/admin/NewProduct';
 import UpdateProduct from './components/admin/UpdateProduct';
-// import OrdersList from './components/admin/OrdersList';
 import UsersList from './components/admin/UsersList';
 import UpdateUser from './components/admin/UpdateUser';
 import ProductReviews from './components/admin/ProductReviews';
+import ProcessOrder from './components/admin/ProcessOrder';
+import OrdersList from './components/admin/OrdersList';
 
 function App() {
 
@@ -70,7 +71,7 @@ function App() {
           <ProtectedRoute path='/success' component={OrderSuccess}/>
           <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />
-          <ProtectedRoute path="/order/confirm" component={ConfirmOrder} exact />          
+          <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />          
           {stripeApiKey && 
             <Elements stripe={loadStripe(stripeApiKey)} >
               <ProtectedRoute path='/payment' component={Payment}/>
@@ -86,7 +87,8 @@ function App() {
         <ProtectedRoute path="/admin/users" isAdmin={true} component={UsersList} exact />
         <ProtectedRoute path="/admin/user/:id" isAdmin={true} component={UpdateUser} exact />
         <ProtectedRoute path="/admin/reviews" isAdmin={true} component={ProductReviews} exact />
-        {/* <ProtectedRoute path="/admin/orders" isAdmin={true} component={ OrdersList } exact /> */}
+        <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrdersList} exact />
+        <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} exact />
         {
           !loading && user?.role !=='admin' && (
             <Footer />

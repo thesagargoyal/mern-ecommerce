@@ -3,6 +3,7 @@ import { countries } from 'countries-list'
 
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingInfo } from '../../actions/cartActions'
 
@@ -16,22 +17,24 @@ const Shipping = ({ history }) => {
     const [city, setCity] = useState(shippingInfo.city)
     const [postalCode, setPostalCode] = useState(shippingInfo.postalCode)
     const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo)
-    // const [country, setCountry] = useState(shippingInfo.country? shippingInfo.country: '')
+    const [country, setCountry] = useState(shippingInfo.country)
 
     const dispatch = useDispatch();
 
     const submitHandler = (e) => {
         e.preventDefault()
 
-        dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country:"India" }))
-        history.push('/order/confirm')
+        dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }))
+        history.push('/confirm')
     }
 
     return (
         <Fragment>
 
             <MetaData title={'Shipping Info'} />
+
             <CheckoutSteps shipping />
+
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>
@@ -84,16 +87,24 @@ const Shipping = ({ history }) => {
                             />
                         </div>
 
-                        {/* <div className="form-group">
-                        <label htmlFor="country_field">Country</label>
-                            <input
-                                type="number"
+                        <div className="form-group">
+                            <label htmlFor="country_field">Country</label>
+                            <select
                                 id="country_field"
                                 className="form-control"
-                                value="india"
-                                disabled="true"
-                            />
-                        </div> */}
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                                required
+                            >
+
+                                {countriesList.map(country => (
+                                    <option key={country.name} value={country.name}>
+                                        {country.name}
+                                    </option>
+                                ))}
+
+                            </select>
+                        </div>
 
                         <button
                             id="shipping_btn"

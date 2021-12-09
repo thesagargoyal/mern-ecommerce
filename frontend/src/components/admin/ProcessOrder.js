@@ -71,7 +71,7 @@ const ProcessOrder = ({ match }) => {
                                     <h4 className="mb-4">Shipping Info</h4>
                                     <p><b>Name:</b> {user && user.name}</p>
                                     <p><b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}</p>
-                                    <p className="mb-4"><b>Address:</b>{shippingDetails}</p>
+                                    <p className="mb-4"><b>Address:</b> {shippingDetails}</p>
                                     <p><b>Amount:</b> ${totalPrice}</p>
 
                                     <hr />

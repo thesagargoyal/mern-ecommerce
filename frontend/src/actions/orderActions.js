@@ -56,18 +56,27 @@ export const myOrders = () => async (dispatch)=>{
     }
 }
 
-export const getOrderDetails = (id) => async (dispatch)=>{
-    
-  dispatch({type: ORDER_DETAILS_REQUEST})
-  
+// Get order details
+export const getOrderDetails = (id) => async (dispatch) => {
   try {
-      const {data } = await axios.get(`/api/v1/orders/${id}`);
-      dispatch({ type:ORDER_DETAILS_SUCCESS, payload: data.orders})
+
+      dispatch({ type: ORDER_DETAILS_REQUEST });
+
+      const { data } = await axios.get(`/api/v1/order/${id}`)
+
+      dispatch({
+          type: ORDER_DETAILS_SUCCESS,
+          payload: data.order
+      })
 
   } catch (error) {
-      dispatch({type:ORDER_DETAILS_FAIL, payload: error.response.data.message})
+      dispatch({
+          type: ORDER_DETAILS_FAIL,
+          payload: error.response.data.message
+      })
   }
 }
+
 
 // Get all orders - ADMIN
 export const allOrders = () => async (dispatch) => {
