@@ -39,7 +39,7 @@ function App() {
 
   const [ stripeApiKey, setStripeApiKey ] = useState('');
   
-  const {loading, user} = useSelector(state => state.auth);
+  const {loading, isAuthenticated, user} = useSelector(state => state.auth);
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -90,7 +90,7 @@ function App() {
         <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrdersList} exact />
         <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} exact />
         {
-          !loading && user?.role !=='admin' && (
+          !loading && (!isAuthenticated || user?.role !=='admin') && (
             <Footer />
           )
         }   
