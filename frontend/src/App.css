@@ -27,7 +27,7 @@ body {
 }
 
 nav {
-  background-color: #232f3e;
+  background-color: #000000;
   padding: 1rem 1rem;
 }
 
@@ -269,6 +269,8 @@ footer {
   font-weight: bold;
 }
 
+
+
 .stockCounter input {
   border: none;
   width: 3rem;
@@ -498,7 +500,7 @@ footer {
 #sidebar {
   min-width: 100%;
   max-width: 100%;
-  background: #232f3e;
+  background: #000000;
   color: #fff;
   transition: all 0.3s;
 }
@@ -524,7 +526,7 @@ footer {
 }
 #sidebar ul li a:hover {
   color: #232f3e;
-  background: #fff;
+  background: #fa9c23;               
 }
 
 #sidebar ul li a i {

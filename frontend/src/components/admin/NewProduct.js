@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
-import MetaData from '../layouts/MetaData';
+import MetaData from '../layouts/MetaData'
 import Sidebar from './Sidebar'
 
 import { useAlert } from 'react-alert'
